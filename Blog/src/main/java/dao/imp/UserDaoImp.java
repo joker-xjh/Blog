@@ -12,6 +12,13 @@ import model.User;
 @SuppressWarnings("all")
 @Repository("userDao")
 public class UserDaoImp extends BaseDaoImp<User> implements UserDao{
+	
+	public static void main(String[] args) {
+		System.out.println(new UserDaoImp());
+	}
+	
+	
+	
 
 	public boolean existsUser(String username) {
 		Session session = getSession();

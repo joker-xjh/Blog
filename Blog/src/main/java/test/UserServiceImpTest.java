@@ -64,17 +64,28 @@ public class UserServiceImpTest {
 
 	@Test
 	public void testDeleteInteger() {
-		fail("Not yet implemented");
+		User user = service.find(2);
+		System.out.println(user);
+		service.delete(2);
+		user = service.find(2);
+		System.out.println(user);
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		User user = service.find(1);
+		System.out.println(user);
+		user.setGrade(1);
+		service.update(user);
+		user = service.find(1);
+		System.out.println(user);
 	}
 
 	@Test
 	public void testFindInteger() {
-		fail("Not yet implemented");
+		User user = new User();
+		user = service.find(1);
+		System.out.println(user);
 	}
 
 }

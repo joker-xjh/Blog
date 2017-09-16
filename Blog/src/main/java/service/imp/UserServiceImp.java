@@ -2,6 +2,7 @@ package service.imp;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 	@Autowired
 	@Qualifier("userDao")
 	private UserDao dao;
+	
+	
 	
 
 	public boolean checkUsername(String username) {
@@ -42,6 +45,14 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 	public List<User> find(Integer pageNow, Integer rows) {
 		String hql = "from User";
 		return dao.find(hql, pageNow, rows);
+	}
+
+	public User find(Integer id) {
+		return dao.find(User.class, id);
+	}
+
+	public void delete(Integer id) {
+		dao.delete(User.class, id);
 	}
 
 }

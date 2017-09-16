@@ -26,16 +26,16 @@ public class BaseServiceImp<T> implements BaseService<T>{
 		dao.delete(obj);
 	}
 
-	public void delete(Integer id) {
-		dao.delete(id);
+	public void delete(Class<T> clazz, Integer id) {
+		dao.delete(clazz, id);
 	}
 
 	public void update(T obj) {
 		dao.update(obj);
 	}
 
-	public T find(Integer id) {
-		return dao.find(id);
+	public T find(Class<T> clazz, Integer id) {
+		return dao.find(clazz, id);
 	}
 
 	public Integer count(String hql) {
@@ -50,4 +50,7 @@ public class BaseServiceImp<T> implements BaseService<T>{
 		return dao.find(hql, pageNow, rows);
 	}
 
+	
+
+	
 }

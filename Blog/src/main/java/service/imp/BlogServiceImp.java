@@ -34,4 +34,12 @@ public class BlogServiceImp extends BaseServiceImp<Blog> implements BlogService{
 		return dao.find(hql, pageNow, rows);
 	}
 
+	public Blog find(Integer id) {
+		return dao.find(Blog.class, id);
+	}
+
+	public void delete(Integer id) {
+		dao.delete(Blog.class, id);
+	}
+
 }

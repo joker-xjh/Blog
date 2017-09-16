@@ -7,5 +7,9 @@ import model.Blog;
 
 @Repository("blogDao")
 public class BlogDaoImp extends BaseDaoImp<Blog> implements BlogDao{
+	
+	public static void main(String[] args) {
+		new BlogDaoImp();
+	}
 
 }

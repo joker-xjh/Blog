@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+
 import model.User;
 
 public interface UserService extends BaseService<User>{
@@ -11,4 +12,6 @@ public interface UserService extends BaseService<User>{
 	Integer count();
 	List<User> findAll();
 	List<User> find(Integer pageNow, Integer rows);
+	User find(Integer id);
+	void delete(Integer id);
 }

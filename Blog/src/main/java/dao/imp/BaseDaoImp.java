@@ -18,15 +18,8 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private Class<T> clazz;
-	
-	
-	protected Class<T> getClazz() {
-		if(clazz == null) {
-			clazz = ((Class<T>)
-                    (((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[0]));
-		}
-		return clazz;
+	public static void main(String[] args) {
+		
 	}
 	
 	protected Session getSession() {
@@ -37,8 +30,8 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		getSession().save(obj);
 	}
 
-	public void delete(Integer id) {
-		T obj = find(id);
+	public void delete(Class<T> clazz, Integer id) {
+		T obj = find(clazz,id);
 		getSession().delete(obj);
 	}
 
@@ -50,8 +43,8 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		getSession().update(obj);
 	}
 
-	public T find(Integer id) {
-		return (T) getSession().get(getClazz(), id);
+	public T find(Class<T> clazz, Integer id) {
+			return (T) getSession().get(clazz, id);
 	}
 
 	public Integer count(String hql) {
@@ -74,6 +67,7 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		return list;
 	}
 
+	
 	
 
 }
