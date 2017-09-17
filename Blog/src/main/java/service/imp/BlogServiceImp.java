@@ -15,31 +15,35 @@ import service.BlogService;
 @Transactional
 public class BlogServiceImp extends BaseServiceImp<Blog> implements BlogService{
 	
+	
 	@Autowired
 	@Qualifier("blogDao")
 	private BlogDao dao;
-
-	public Integer count() {
-		String hql = "from Blog";
-		return dao.count(hql);
-	}
+	
+	
+	
 
 	public List<Blog> findAll() {
 		String hql = "from Blog";
 		return dao.findAll(hql);
 	}
 
-	public List<Blog> find(Integer pageNow, Integer rows) {
-		String hql = "from Blog";
-		return dao.find(hql, pageNow, rows);
+	public List<Blog> find(String hql, Integer pageNow, Integer rows, Object...params) {
+		return dao.find(hql, pageNow, rows, params);
 	}
 
 	public Blog find(Integer id) {
 		return dao.find(Blog.class, id);
 	}
 
-	public void delete(Integer id) {
+	public synchronized  void delete(Integer id) {
 		dao.delete(Blog.class, id);
+	}
+
+	public Integer count() {
+		String hql = "from Blog";
+		int count = count(hql);
+		return count;
 	}
 
 }

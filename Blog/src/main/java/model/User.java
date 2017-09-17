@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class User {
 	private String username;
 	private String password;
 	private List<Blog> blogs = new ArrayList<Blog>();
-	private Integer grade;   // 0 表示普通用户，1表示管理员
+	private Integer grade;   // 其他表示普通用户，1表示管理员
 	
 	@Override
 	public String toString() {

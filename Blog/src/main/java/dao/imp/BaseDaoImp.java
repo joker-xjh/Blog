@@ -52,6 +52,17 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		List list = query.list();
 		return list.size();
 	}
+	
+	public Integer count(String hql, Object...params) {
+		Query query = getSession().createQuery(hql);
+		if(params != null && params.length >0) {
+			for(int i=0; i<params.length; i++) {
+				query.setParameter(i, params[i]);
+			}
+		}
+		List list = query.list();
+		return list.size();
+	}
 
 	public List<T> findAll(String hql) {
 		Query query = getSession().createQuery(hql);
@@ -59,9 +70,14 @@ public class BaseDaoImp<T> implements BaseDao<T>{
 		return list;
 	}
 
-	public List<T> find(String hql, Integer pageNow, Integer rows) {
+	public List<T> find(String hql, Integer pageNow, Integer rows, Object...params) {
 		Query query = getSession().createQuery(hql);
-		query.setFirstResult(pageNow);
+		if(params != null) {
+			for(int i=0; i<params.length; i++) {
+				query.setParameter(i, params[i]);
+			}
+		}
+		query.setFirstResult((pageNow-1)*rows);
 		query.setMaxResults(rows);
 		List list = query.list();
 		return list;

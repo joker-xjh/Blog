@@ -10,7 +10,8 @@ public interface BaseService<T> {
 	void update(T obj);
 	T find(Class<T> clazz, Integer id);
 	Integer count(String hql);
+	Integer count(String hql, Object...params);
 	List<T> findAll(String hql);
-	List<T> find(String hql, Integer pageNow, Integer rows);
+	List<T> find(String hql, Integer pageNow, Integer rows, Object...params);
 
 }
